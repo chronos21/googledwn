@@ -4,7 +4,6 @@ const argv = process.argv
 const { spawn } = require('child_process')
 const axios = require('axios')
 const { statSync, unlinkSync } = require("fs");
-const { FILE } = require('dns');
 
 function getFileID(url) {
     let FILEID
