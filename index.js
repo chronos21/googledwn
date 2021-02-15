@@ -55,7 +55,7 @@ async function getFileName(FILEID, argv = []) {
 
     try {
         let res = await axios.get(`https://drive.google.com/file/d/${FILEID}/view`)
-        data = res.data
+        data = res.data || ''
         FILENAME = data.split('<meta itemprop="name" content="')[1].split('"><meta')[0]
         if (!FILENAME) {
             throw new Error('LINK IS RESTRICTED')
@@ -81,7 +81,7 @@ async function handleDownload(argv) {
 
     try {
         const size = getFileSize(FILENAME)
-        if(size < 10){
+        if(size < 3){
             unlinkSync(FILENAME)
             console.log('FILE SIZE IS UNDER 3MB. RESTARTING DOWNLOAD.')
         } else {
